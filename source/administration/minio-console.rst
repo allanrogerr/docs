@@ -28,6 +28,28 @@ You can use the MinIO Console for administration tasks like Identity and Access 
 The MinIO Console is embedded as part of the MinIO Server. 
 You can also deploy a standalone MinIO Console using the instructions in the :minio-git:`github repository <console>`.
 
+Supported Browsers
+~~~~~~~~~~~~~~~~~~
+
+MinIO Console runs on a variety of current, stable release browsers.
+
+For the best experience in the MinIO Console, use the latest stable release of your preferred browser.
+Some browsers that are supported include:
+
+- Chrome
+- Edge
+- Safari
+- Firefox
+- Opera
+
+This list is *not* exhaustive and is subject to change.
+
+For a full list of browsers and versions for running MinIO Console, see the `Browserslist <https://browsersl.ist/#q=%3E0.2%25%2Cnot+dead+and+not+op_mini+all>`__ website.
+
+.. tip:: 
+   
+   MinIO Console does *not* support Opera Mini.
+
 Configuration
 -------------
 
@@ -87,6 +109,8 @@ the MinIO Console:
        public internet. Specify an externally reachable hostname that resolves
        to the MinIO Console.
 
+.. _minio-console-port-assignment:
+
 Static vs Dynamic Port Assignment
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
@@ -102,20 +126,22 @@ You can select an explicit static port by passing the
 each MinIO Server in the deployment. 
 
 For example, the following command starts a distributed MinIO deployment using
-a static port assignment of ``9001`` for the MinIO Console. This deployment
+a static port assignment of ``9090`` for the MinIO Console. This deployment
 would respond to S3 API operations on the default MinIO server port ``:9000``
-and browser access on the MinIO Console port ``:9001``.
+and browser access on the MinIO Console port ``:9090``.
 
 .. code-block:: shell
    :class: copyable
 
    minio server https://minio-{1...4}.example.net/mnt/drive-{1...4} \
-         --console-address ":9001"
+         --console-address ":9090"
 
 Deployments behind network routing components which require static ports for 
 routing rules may require setting a static MinIO Console port. For example,
 load balancers, reverse proxies, or Kubernetes ingress may by default block
 or exhibit unexpected behavior with the the dynamic redirection behavior.
+
+You must also ensure that the host system firewall grants access to the configured Console port.
 
 .. _minio-console-play-login:
 
